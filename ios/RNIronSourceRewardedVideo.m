@@ -113,7 +113,10 @@ RCT_EXPORT_METHOD(setDynamicUserId:(NSString*)userId)
  */
 - (void)rewardedVideoDidFailToShowWithError:(NSError *)error {
     NSLog(@">>>>>>>>>>>> RewardedVideo ad closed due to an error: %@!", error);
-    [self sendEventWithName:kIronSourceRewardedVideoClosedByError body:nil];
+    [self sendEventWithName:kIronSourceRewardedVideoClosedByError body:@{
+        @"code": error.code,
+        @"message": error.message
+        }];
 }
 
 /**
